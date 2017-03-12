@@ -1,0 +1,27 @@
+import sqlite3
+conn = sqlite3.connect('test.db')
+print "Opened database successfully";
+
+conn.execute('''CREATE TABLE DustbinRecords
+       (ID INT PRIMARY KEY     NOT NULL,
+       Dustbin No.       INT    NOT NULL,
+       Level             INT     NOT NULL;''')
+
+conn.execute("INSERT INTO DustbinRecords (ID,Dustbin No.,Level) \
+      VALUES (1, 'Paul', 32)");
+
+conn.execute("INSERT INTO DustbinRecords (ID,Dustbin No.,Level) \
+      VALUES (2, 'Allen', 25 )");
+
+conn.execute("INSERT INTO DustbinRecords (ID,Dustbin No.,Level) \
+      VALUES (3, 'Teddy', 23)");
+
+conn.commit()
+cursor = conn.execute("SELECT id, Dustbin No., Level from DustbinRecords")
+for row in cursor:
+   print "ID = ", row[0]
+   print "Dustbin No = ", row[1]
+   print " Level= ", row[2],"\n"
+
+print "Records created successfully";
+conn.close()
